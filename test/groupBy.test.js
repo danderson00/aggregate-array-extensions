@@ -24,10 +24,19 @@ test("groupBy preserves key", () => {
 
 test("groupBy applies aggregate transform", () => {
   expect([1, 2, 3, 4, 5]
-    .groupBy(x => x % 2 === 0 ? 'even' : 'odd', x => x.reduce((sum, value) => sum + value, 0)))
+    .groupBy(x => x % 2 === 0 ? 'even' : 'odd', null, x => x.reduce((sum, value) => sum + value, 0)))
     .toEqual([
       { key: 'odd', value: 9 },
       { key: 'even', value: 6 }
+    ])
+})
+
+test("groupBy applies element selector", () => {
+  expect([1, 2, 3, 4, 5]
+    .groupBy(x => x % 2 === 0 ? 'even' : 'odd', x => x * 2))
+    .toEqual([
+      { key: 'odd', value: [2, 6, 10] },
+      { key: 'even', value: [4, 8] }
     ])
 })
 
@@ -42,12 +51,22 @@ test("groupIntoObject", () => {
 
 test("groupIntoObject applies aggregate transform", () => {
   expect([1, 2, 3, 4, 5]
-    .groupIntoObject(x => x % 2 === 0 ? 'even' : 'odd', x => x.reduce((sum, value) => sum + value, 0)))
+    .groupIntoObject(x => x % 2 === 0 ? 'even' : 'odd', null, x => x.reduce((sum, value) => sum + value, 0)))
     .toEqual({
       odd: 9,
       even: 6
     })
 })
+
+test("groupIntoObject applies element selector", () => {
+  expect([1, 2, 3, 4, 5]
+    .groupIntoObject(x => x % 2 === 0 ? 'even' : 'odd', x => x * 2))
+    .toEqual({
+      odd: [2, 6, 10],
+      even: [4, 8]
+    })
+})
+
 
 // test("aggregateGroups", () => {
 //   var source = [

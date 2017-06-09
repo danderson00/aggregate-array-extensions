@@ -1,9 +1,9 @@
 /* eslint-disable no-extend-native */
-Array.prototype.groupBy = function(groupSelector, aggregateTransform) {
+Array.prototype.groupBy = function(keySelector, elementSelector, aggregateTransform) {
   var result = this.reduce(function(hash, item) {
-    var group = groupSelector(item)
+    var group = keySelector(item)
     var entry = (hash[group] = hash[group] || { key: group, value: [] })
-    entry.value.push(item)
+    entry.value.push(elementSelector ? elementSelector(item) : item)
     return hash
   }, {})
 
@@ -14,11 +14,11 @@ Array.prototype.groupBy = function(groupSelector, aggregateTransform) {
     }))
 }
 
-Array.prototype.groupIntoObject = function(groupSelector, aggregateTransform) {
+Array.prototype.groupIntoObject = function(keySelector, elementSelector, aggregateTransform) {
   var result = this.reduce(function(hash, item) {
-    var group = groupSelector(item)
+    var group = keySelector(item)
     var entry = (hash[group] = hash[group] || [])
-    entry.push(item)
+    entry.push(elementSelector ? elementSelector(item) : item)
     return hash
   }, {})
 

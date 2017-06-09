@@ -1,6 +1,6 @@
 {
   "name": "aggregate-array-extensions",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Simple extensions to the Array prototype for aggregating elements",
   "main": "index.js",
   "scripts": {

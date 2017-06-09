@@ -100,3 +100,25 @@ selector|Function to select the value to sum
 ```Javascript
 expect([1, 2, 3, 4].sum()).toBe(10)
 ```
+
+## mapIntoObject
+
+    Array.prototype.mapIntoObject = function(keySelector, valueSelector)
+
+Parameter|Description
+-|-
+keySelector|Function to select the key on the result object
+valueSelector|Function to select the value to assign
+
+```Javascript
+expect([
+    { v: 1 },
+    { v: 2 },
+    { v: 3 }
+  ].mapIntoObject(x => x.v, x => x.v * 2))
+  .toEqual({
+    1: 2,
+    2: 4,
+    3: 6
+  })
+```

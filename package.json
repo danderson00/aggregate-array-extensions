@@ -1,0 +1,20 @@
+{
+  "name": "aggregate-array-extensions",
+  "version": "0.0.2",
+  "description": "Simple extensions to the Array prototype for aggregating elements",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "array",
+    "prototype",
+    "extensions",
+    "aggregate"
+  ],
+  "author": "danderson00",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^20.0.4"
+  }
+}

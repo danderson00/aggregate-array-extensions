@@ -8,10 +8,12 @@ Array.prototype.groupBy = function(keySelector, elementSelector, aggregateTransf
   }, {})
 
   return Object.keys(result)
-    .map(x => ({
-      key: result[x].key,
-      value: aggregateTransform ? aggregateTransform(result[x].value) : result[x].value
-    }))
+    .map(function(x) {
+      return {
+        key: result[x].key,
+        value: aggregateTransform ? aggregateTransform(result[x].value) : result[x].value
+      }
+    })
 }
 
 Array.prototype.groupIntoObject = function(keySelector, elementSelector, aggregateTransform) {
@@ -23,7 +25,9 @@ Array.prototype.groupIntoObject = function(keySelector, elementSelector, aggrega
   }, {})
 
   if(aggregateTransform)
-    Object.keys(result).forEach(key => result[key] = aggregateTransform(result[key]))
+    Object.keys(result).forEach(function(key) {
+      return result[key] = aggregateTransform(result[key])
+    })
 
   return result
 }
